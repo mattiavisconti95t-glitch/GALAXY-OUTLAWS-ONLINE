@@ -8,3 +8,5 @@ GALAXY OUTLAWS v2.0 - FIRESTORE (PROTOTIPO DI TEST)
 6. Questa è una base di TEST: le mani sono visualmente separate, ma NON sono private nel database. L'host risolve le mosse; non è anti-cheat. Non usarla come multiplayer pubblico.
 7. Le illustrazioni originali delle carte azione e delle taglie NON erano presenti nello ZIP sorgente. Nella versione online sono sostituite da segnaposto grafici leggibili, per evitare immagini rotte. L'OFFLINE è rimasto identico al file sorgente.
 8. Testare su due telefoni: creazione, ingresso, selezione, gioco, duello, riconnessione. Il codice non è stato testato con un Firebase live.
+
+CORREZIONE 15/11/2026: la lista delle Taglie ora viene salvata come array di oggetti anziché array annidati, compatibile con Firestore. Per il test crea una NUOVA stanza dopo la pubblicazione.

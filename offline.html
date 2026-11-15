@@ -1,0 +1,179 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="theme-color" content="#160a0b"><title>GALAXY OUTLAWS</title><style>
+*{box-sizing:border-box}html,body{margin:0;background:#080507;color:#ffebd1;font-family:system-ui,-apple-system,sans-serif;overflow:hidden}button{font:inherit;cursor:pointer;color:inherit}#app{width:100vw;height:100dvh;position:relative;overflow:hidden;background:#100809}.screen{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .8s,transform .8s;transform:scale(1.06)}.screen.active{opacity:1;visibility:visible;transform:scale(1)}#menu{background:url('./menu-bg.jpg') center center/100% 100% no-repeat}#board{background:url('./board-bg.jpg') center center/100% 100% no-repeat}#menu:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(transparent 75%,#0004)}.hit{position:absolute;border:0;background:transparent;z-index:2}#newBtn{left:14%;top:61%;width:73%;height:11%}#continueBtn{left:14%;top:72.5%;width:73%;height:8%}#settingsBtn{left:14%;top:82%;width:73%;height:9%}#subMenu{position:absolute;left:15%;right:15%;top:55%;z-index:6;background:#150b0af2;border:2px solid #d74b27;box-shadow:0 0 35px #ff300b80;border-radius:12px;padding:16px;text-align:center;display:none}#subMenu.show{display:block}#subMenu h2{font-size:18px;margin:0 0 12px;color:#fce2af}#subMenu button,.uiBtn{background:linear-gradient(#7d2419,#290c0b);border:1px solid #ff763b;border-radius:8px;padding:11px 16px;margin:5px;font-weight:900;box-shadow:0 0 12px #d63a1c66}#cape{position:absolute;left:19%;top:38%;width:40%;height:21%;clip-path:polygon(52% 0,90% 18%,100% 48%,82% 93%,32% 100%,0 75%,16% 38%);background:linear-gradient(110deg,transparent 35%,#f5332022 55%,transparent 70%);transform-origin:65% 0;animation:cape 2.8s ease-in-out infinite alternate;pointer-events:none;mix-blend-mode:screen}@keyframes cape{from{transform:skewX(-3deg) rotate(-1deg)}to{transform:skewX(5deg) rotate(2deg)}}
+#topHud{position:absolute;top:3.5%;left:3%;right:3%;display:flex;justify-content:space-between;align-items:center;z-index:4;font-weight:900;text-shadow:0 2px 4px black;font-size:12px}#backMenu{background:#140909c9;border:1px solid #b94627;border-radius:8px;padding:6px}#wantedCard{position:absolute;top:24.7%;left:40.1%;width:19.8%;height:18.7%;object-fit:contain;filter:drop-shadow(0 3px 5px #000);transition:transform .3s}#wantedHealth{position:absolute;top:20.3%;left:33%;width:34%;height:3.4%;z-index:2}#hunterHud{position:absolute;top:3.4%;left:22%;right:22%;display:flex;gap:4px;justify-content:center;z-index:3} .health{border:1px solid #f58b42;border-radius:5px;background:#200a0de8;box-shadow:0 0 7px #ff3d19a8;overflow:hidden;position:relative;text-align:center;font-size:12px;font-weight:900;white-space:nowrap}.health .fill{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,#a71919,#ec552a);transition:width .45s}.health span{position:relative;z-index:1;text-shadow:0 1px 3px #000}#wantedHealth{font-size:15px}#hunterHud .health{flex:1;min-width:0;font-size:10px;padding:3px 0}#played{position:absolute;left:6.4%;width:87.2%;top:53.8%;height:13.7%;display:grid;grid-template-columns:repeat(4,1fr);gap:3.2%;z-index:3;pointer-events:none}.playedCard{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;perspective:500px}.playedCard img{width:100%;height:100%;object-fit:fill;border-radius:5px;box-shadow:0 4px 9px #0009;transition:transform .45s}.playedCard.reveal img{animation:flip .7s ease both}.playedCard.fire img{transform:translateY(-13px) scale(1.08);filter:drop-shadow(0 0 10px #ffdb7c)}@keyframes flip{0%{transform:rotateY(90deg)}100%{transform:rotateY(0)}}#deckCard{position:absolute;left:22.2%;top:74.3%;width:19%;height:13.4%;object-fit:fill;filter:drop-shadow(0 2px 4px #000);z-index:2}#discardCard{position:absolute;left:60%;top:74.3%;width:19%;height:13.4%;object-fit:fill;opacity:.88;z-index:2}#handArea{position:absolute;bottom:0;left:0;right:0;height:20%;z-index:8;background:linear-gradient(transparent,#0b070be8 28%,#110b0ff2);display:flex;flex-direction:column;align-items:center;justify-content:end;padding-bottom:max(7px,env(safe-area-inset-bottom))}#handTitle{font-size:11px;letter-spacing:2px;text-shadow:0 1px 3px black}#handCards{width:100%;height:77%;display:flex;justify-content:center;align-items:end;gap:0;overflow-x:auto;overflow-y:hidden;padding:0 6px 2px}.handCard{flex:0 0 min(19vw,80px);height:95%;margin-left:-3px;background:none;border:0;padding:0;transition:transform .2s}.handCard img{width:100%;height:100%;object-fit:fill;border-radius:5px;box-shadow:0 0 8px #000}.handCard.selected{transform:translateY(-12px)}.handCard.selected img{outline:2px solid #ffdf76}#playBtn{position:absolute;right:2%;bottom:20.3%;z-index:9;background:linear-gradient(#a92815,#42100c);border:2px solid #ff8c4a;border-radius:8px;font-weight:900;padding:8px 12px;font-size:11px;box-shadow:0 0 14px #f34d23aa}#playBtn:disabled{opacity:.4}#status{position:absolute;left:3%;right:3%;top:69%;text-align:center;font-weight:800;font-size:12px;text-shadow:0 2px 5px #000;z-index:6;pointer-events:none}#effectLayer{position:absolute;inset:0;z-index:12;pointer-events:none}.bullet{position:absolute;width:9px;height:18px;border-radius:50%;background:#fff8b0;box-shadow:0 0 15px 6px #ff731b;transform:translate(-50%,-50%);animation:bullet .32s linear forwards}@keyframes bullet{to{left:50%;top:33%;opacity:0;transform:translate(-50%,-50%) scale(.4)}}.impact{position:absolute;left:50%;top:33%;font-size:30px;color:#fff0a0;text-shadow:0 0 15px red;animation:impact .5s forwards}@keyframes impact{to{transform:scale(2);opacity:0}}#modal{position:absolute;inset:0;background:#000b;z-index:30;display:none;align-items:center;justify-content:center;padding:20px}#modal.show{display:flex}#modalBox{background:#1b0c0cf5;border:2px solid #ee6a30;border-radius:12px;padding:20px;text-align:center;width:100%;max-width:370px;box-shadow:0 0 35px #b9361b80}#modalBox h2{margin-top:0}#modalBox p{white-space:pre-line}#settings{position:absolute;inset:0;background:#080509e8;z-index:15;display:none;align-items:center;justify-content:center}#settings.show{display:flex}#settings>div{background:#281212;padding:22px;border:1px solid #d95732;border-radius:12px}#toast{position:absolute;top:11%;left:5%;right:5%;text-align:center;z-index:25;color:#fff5da;font-weight:900;text-shadow:0 2px 6px black;pointer-events:none}#dealCard{position:absolute;width:17%;height:12%;z-index:20;display:none;pointer-events:none;transition:transform .45s ease,opacity .45s}#dealCard img{width:100%;height:100%}@media (min-aspect-ratio: 3/4){#app{width:min(100vw,65vh);margin:auto}body{background:#080507}}@media (prefers-reduced-motion:reduce){#cape{animation:none}}
+#duelOverlay{position:absolute;inset:0;z-index:45;background:#090307ee;display:none;align-items:center;justify-content:center;padding:16px}#duelOverlay.show{display:flex}#duelPanel{width:100%;max-width:420px;border:2px solid #f64d2e;background:linear-gradient(145deg,#2d0b0b,#10090b);border-radius:15px;padding:16px;text-align:center;box-shadow:0 0 40px #c7252c8a}#duelPanel h2{font-size:27px;color:#ffb58a;margin:4px 0}#duelChoices{display:flex;gap:8px;overflow-x:auto;padding:14px 3px;justify-content:safe center}#duelChoices button{border:2px solid #8d392c;border-radius:7px;background:#210d0e;padding:0;flex:0 0 65px;height:104px}#duelChoices button img{width:100%;height:100%;object-fit:fill}#duelInfo{font-size:13px;line-height:1.5}#duelZero{background:#86241a;border:1px solid #ff9961;padding:10px;border-radius:8px}
+/* Alpha 0.7: pile di carte reali e grafica ufficiale */
+#deckStack,#discardStack{position:absolute;top:74.3%;width:19%;height:13.4%;z-index:3;pointer-events:none}
+#deckStack{left:22.2%}#discardStack{left:60%}
+#deckCard,#discardCard{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:fill!important;border-radius:5px;box-shadow:0 3px 8px #000c}
+#deckStack:before,#deckStack:after,#discardStack:before{content:"";position:absolute;inset:0;border-radius:5px;background:#241212;border:1px solid #d5b69a;box-shadow:0 2px 4px #000b}
+#deckStack:before{transform:translate(-4px,-6px)}#deckStack:after{transform:translate(-2px,-3px)}#discardStack:before{transform:translate(-3px,-3px)}
+#deckStack.empty{opacity:.18}#discardStack.empty{opacity:.12}
+#duelLogo{display:block;width:100%;height:auto;max-height:120px;object-fit:contain;background:#fff;border-radius:4px;margin:0 auto 12px}
+#duelPanel{border-color:#e93d25;box-shadow:0 0 50px #c7252cbb}
+#discardCard{opacity:1!important}
+#dealCard{z-index:22}
+#discardFly{position:absolute;z-index:21;width:16%;height:12%;pointer-events:none;transition:all .45s ease-in;filter:drop-shadow(0 5px 7px #000)}
+
+/* Alpha 0.8: il duello non nasconde la mano, e le carte conservano le proporzioni */
+#wantedCard{left:37.7%!important;top:21.35%!important;width:24.6%!important;height:23.4%!important;object-fit:contain!important}
+#duelOverlay{background:linear-gradient(#090307e8 0%,#090307c8 46%,transparent 76%)!important;align-items:flex-start!important;padding:0!important;pointer-events:none!important;z-index:24!important}
+#duelPanel{position:absolute;top:10%;left:4%;width:92%;max-width:none;padding:10px 12px 12px;pointer-events:auto}
+#duelLogo{max-height:75px;margin-bottom:4px;background:transparent}
+#duelInfo{margin:5px 0;font-size:12px}
+#duelChoices{display:flex;justify-content:center;gap:8px;overflow:visible;padding:8px 0 3px;min-height:92px}
+.duelSlot{width:19%;max-width:75px;min-height:90px;display:flex;flex-direction:column;gap:3px;align-items:center;color:#f5c4a4;font-size:10px;font-weight:800}
+.duelSlot img{width:100%;height:78px;object-fit:contain;filter:drop-shadow(0 2px 4px #000)}
+#handArea{z-index:35!important}
+#playBtn{z-index:9}
+#duelOverlay.show~#handArea{z-index:35}
+
+/* Alpha 1.0: selezione Cacciatore e badge */
+#wantedCard{left:35.85%!important;top:19.6%!important;width:28.3%!important;height:26.9%!important;object-fit:contain!important;z-index:3!important}
+#hunterSelect{position:absolute;left:5%;right:5%;top:43%;z-index:9;background:#160908f5;border:2px solid #f16b3c;border-radius:14px;padding:12px 8px;text-align:center;box-shadow:0 0 35px #ff300b88;display:none}
+#hunterSelect.show{display:block}#hunterSelect h2{font-size:17px;margin:3px 0 12px;letter-spacing:1px}
+#hunterChoices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.hunterChoice{background:#2a0d0d;border:1px solid #e87942;border-radius:12px;padding:8px 4px;display:flex;align-items:center;flex-direction:column;gap:5px;font-weight:900;font-size:14px}
+.hunterChoice img{width:min(26vw,105px);height:min(26vw,105px);object-fit:contain;filter:drop-shadow(0 3px 4px #000)}
+#hunterHud{position:absolute!important;top:2.2%!important;left:auto!important;right:2%!important;width:65%!important;display:flex!important;justify-content:flex-end!important;align-items:flex-start!important;gap:3px!important;z-index:7!important;pointer-events:none}
+.hunterBadge{flex:0 1 24%;min-width:0;text-align:center;filter:drop-shadow(0 2px 4px #000)}
+.hunterBadge img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:contain}
+.hunterBadge .hpNumber{display:block;margin-top:-2px;color:#fff1d9;font-size:clamp(11px,3vw,15px);font-weight:1000;text-shadow:0 2px 4px #000,0 0 4px #000}
+.hunterBadge .hpNumber b{color:#ff3939;font-size:1.15em}
+#topHud{top:1.5%!important;right:68%!important;left:2%!important;flex-wrap:wrap;justify-content:flex-start;gap:4px;font-size:10px!important}
+#topHud #score{display:block;width:100%}
+
+/* Alpha 1.1 — vita incastonata sopra il Fuorilegge, senza sovrapposizione */
+#wantedHealth{position:absolute!important;left:18%!important;top:14.0%!important;width:64%!important;height:9.2%!important;z-index:5!important;border:0!important;border-radius:0!important;box-shadow:none!important;background:transparent url('./wanted-health-frame.png') center/100% 100% no-repeat!important;overflow:visible!important;display:block!important;font-size:clamp(12px,3.6vw,19px)!important}
+#wantedHealth .fill{position:absolute!important;left:24%!important;top:45%!important;bottom:auto!important;height:25%!important;max-width:68%!important;border-radius:3px!important;background:linear-gradient(90deg,#8e1414,#f44727)!important;box-shadow:0 0 7px #f44422a0!important;transition:width .45s ease!important}
+#wantedHealth span{position:absolute!important;left:24%!important;top:42%!important;width:68%!important;text-align:center!important;line-height:1.5!important;font-size:clamp(12px,3.4vw,19px)!important;color:#fff1d7!important;text-shadow:0 2px 3px #000,0 0 5px #000!important}
+#wantedCard{top:21.2%!important}
+
+/* Alpha 1.2 — nuova plancia ufficiale: posizionamento sui riquadri dell'illustrazione */
+#board{background-image:url('./board-bg.jpg')!important;background-size:100% 100%!important}
+#topHud{top:1.4%!important;left:2.5%!important;right:69%!important;font-size:10px!important}
+#hunterHud{top:1.3%!important;right:2%!important;width:65%!important}
+#wantedHealth{left:26%!important;top:19.6%!important;width:62%!important;height:5.5%!important;background:none!important;box-shadow:none!important;border:0!important;z-index:5!important;overflow:hidden!important}
+#wantedHealth .fill{display:none!important}
+#wantedHealth span{left:0!important;top:30%!important;width:100%!important;line-height:1.3!important;font-size:clamp(17px,4.4vw,26px)!important;color:#fff0ce!important;text-shadow:0 2px 5px #180000,0 0 6px #220000!important}
+#wantedCard{left:32.5%!important;top:26.0%!important;width:35%!important;height:21.3%!important;object-fit:contain!important;z-index:4!important}
+#played{left:5.5%!important;width:89%!important;top:52.4%!important;height:12.1%!important;gap:3%!important}
+.playedCard img{object-fit:contain!important}
+#deckStack{left:21%!important;top:69.7%!important;width:21%!important;height:10.3%!important}
+#discardStack{left:57%!important;top:69.7%!important;width:21%!important;height:10.3%!important}
+#deckCard,#discardCard{object-fit:contain!important}
+#handArea{bottom:3.6%!important;height:13.2%!important;background:transparent!important;z-index:8!important;padding-bottom:0!important}
+#handTitle{display:none!important}
+#handCards{height:100%!important;align-items:center!important;padding:0 3.2%!important;gap:1%!important;overflow:visible!important}
+.handCard{flex:0 0 18.5%!important;height:94%!important;margin:0!important}
+.handCard img{object-fit:contain!important}
+#playBtn{right:4%!important;bottom:17.2%!important;font-size:10px!important;padding:7px 9px!important;z-index:10!important}
+#status{top:66.3%!important;left:5%!important;right:5%!important;font-size:11px!important}
+#duelPanel{top:13%!important}
+@media (max-height:650px){#playBtn{font-size:9px!important;padding:4px 6px!important}}
+#duelOverlay{z-index:24!important;pointer-events:none!important}#duelPanel{pointer-events:none!important}#duelChoices{pointer-events:none!important}#handArea{z-index:35!important}#duelPanel{top:12%!important}#duelOverlay.show{display:flex!important}
+</style></head><body><div id="app"><section id="menu" class="screen active"><div id="cape"></div><button id="newBtn" class="hit" aria-label="Nuova partita"></button><button id="continueBtn" class="hit" aria-label="Continua"></button><button id="settingsBtn" class="hit" aria-label="Impostazioni"></button><div id="subMenu"><h2>QUANTI CACCIATORI?</h2><div><button data-n="2">2</button><button data-n="3">3</button><button data-n="4">4</button></div><button id="cancelMenu" class="uiBtn">ANNULLA</button></div><div id="hunterSelect"><h2>SCEGLI IL TUO CACCIATORE</h2><div id="hunterChoices"></div><button id="backToCount" class="uiBtn">INDIETRO</button></div></section><section id="board" class="screen"><div id="topHud"><button id="backMenu">☰</button><span id="round">TAGLIA 1/20</span><span id="score">0 ¢</span></div><div id="hunterHud"></div><div id="wantedHealth" class="health"></div><img id="wantedCard" alt="Ricercato"><div id="played"></div><div id="deckStack" aria-label="Mazzo Azioni"><img id="deckCard" src="./card-back.webp" alt="Mazzo Azioni"></div><div id="discardStack" aria-label="Pila degli scarti"><img id="discardCard" alt="Ultima carta scartata"></div><div id="status"></div><button id="playBtn" disabled>GIOCA COPERTA</button><div id="handArea"><div id="handTitle">LA TUA MANO</div><div id="handCards"></div></div><div id="effectLayer"></div><div id="toast"></div><div id="dealCard"><img></div></section><div id="settings"><div><h2>IMPOSTAZIONI</h2><label><input type="checkbox" id="animToggle" checked> Animazioni attive</label><p><button id="closeSettings" class="uiBtn">CHIUDI</button></p></div></div><div id="modal"><div id="modalBox"><h2 id="modalTitle"></h2><p id="modalText"></p><button id="modalButton" class="uiBtn">CONTINUA</button></div></div><div id="duelOverlay"><div id="duelPanel"><img id="duelLogo" src="./duel-logo.jpg" alt="DUELLO"><p id="duelInfo"></p><div id="duelChoices"></div><p style="font-size:11px;color:#f4bda3">La carta scelta viene scartata: non infligge danni e non cura.</p></div></div></div><script>
+let duelSelect=null;let duelShown=[];
+const hunters=['JAX','ZYRA','K-17','BRUGG'];const badgePath=name=>'./badge_'+name.toLowerCase().replaceAll('-','')+'.png';let chosenPlayerCount=2;const wantedData=[['KRAAG',700,1],['NIB',650,1],['SIXX',750,1],['ZERA',750,1],['VILT',800,1],['SKAR',650,1],['MURK',850,1],['KIP',950,1],['NOVA',750,1],['RAX',750,1],['KORV',800,1],['GRIMM',850,1],['SHARD',800,1],['BRAX',700,1],['GORR',800,1],['MARA',850,2],['THORN',800,2],['VEXA',900,2],['VEX',900,2],['OXX',900,2]];
+const $=s=>document.querySelector(s),img=(type,name)=>`./${type}_${String(name).toLowerCase().replaceAll('-','')}.webp`;let selected=-1,state=null,modalNext=null,locked=false,anim=true;
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const makeDeck=()=>shuffle([...Array.from({length:8},()=>({type:'attack',speed:6,power:1})),...Array.from({length:8},()=>({type:'attack',speed:5,power:2})),...Array.from({length:8},()=>({type:'attack',speed:4,power:3})),...Array.from({length:8},()=>({type:'attack',speed:3,power:4})),...Array.from({length:8},()=>({type:'attack',speed:2,power:5})),...Array.from({length:4},()=>({type:'attack',speed:1,power:6})),...Array.from({length:14},()=>({type:'heal',speed:0,power:1})),...Array.from({length:6},()=>({type:'heal',speed:0,power:2}))]);
+// The PDF attack deck has 40 cards: six groups, counts 5/8/8/8/7/4 (speed 6..1).
+const attackDeck=()=>shuffle([...[6,5,4,3,2,1].flatMap((s,i)=>Array.from({length:[5,8,8,8,7,4][i]},()=>({type:'attack',speed:s,power:7-s}))),...Array.from({length:14},()=>({type:'heal',speed:0,power:1})),...Array.from({length:6},()=>({type:'heal',speed:0,power:2}))]);
+
+const wait=ms=>new Promise(r=>setTimeout(r,anim?ms:20));
+const showScreen=name=>{document.querySelectorAll('.screen').forEach(e=>e.classList.toggle('active',e.id===name))};
+function updatePiles(){
+ if(!state)return;
+ const d=$('#deckStack'),w=$('#discardStack'),top=$('#discardCard');
+ d.classList.toggle('empty',state.deck.length===0);
+ w.classList.toggle('empty',state.discard.length===0);
+ const c=state.discard.at(-1);
+ if(c){top.src=img(c.type,c.type==='heal'?c.power:c.speed);top.style.visibility='visible'}
+ else{top.removeAttribute('src');top.style.visibility='hidden'}
+ d.title='Carte nel mazzo: '+state.deck.length;
+ w.title='Carte scartate: '+state.discard.length;
+}
+function discardCard(c){if(!c)return;state.discard.push(c);updatePiles()}
+async function animateDiscard(c,fromSlot){if(!c)return;
+ const stage=$('#board'),from=fromSlot!=null?$('#slot'+fromSlot):null,to=$('#discardStack');
+ if(!stage.classList.contains('active'))return;
+ const base=stage.getBoundingClientRect(),a=(from||$('#deckStack')).getBoundingClientRect(),b=to.getBoundingClientRect();
+ const f=document.createElement('img');f.id='discardFly';f.src=img(c.type,c.type==='heal'?c.power:c.speed);
+ f.style.left=(a.left-base.left)+'px';f.style.top=(a.top-base.top)+'px';f.style.width=a.width+'px';f.style.height=a.height+'px';stage.append(f);
+ await wait(30);f.style.left=(b.left-base.left)+'px';f.style.top=(b.top-base.top)+'px';f.style.width=b.width+'px';f.style.height=b.height+'px';await wait(460);f.remove();discardCard(c)
+}
+function draw(){if(!state.deck.length&&state.discard.length){state.deck=shuffle(state.discard);state.discard=[];updatePiles()}const c=state.deck.pop()||null;updatePiles();return c}
+function refill(p){while(p.hand.length<p.hp){const c=draw();if(!c)break;p.hand.push(c)}}
+function save(){try{localStorage.setItem('galaxy-outlaws-save-v9',JSON.stringify(state))}catch(e){}}
+function health(name,hp,max){return `<span>♥ ${hp} / ${max}</span>`}
+function status(s){$('#status').textContent=s}
+function toast(s){$('#toast').textContent=s}
+function render(){if(!state||!state.current)return;$('#round').textContent=`TAGLIA ${state.round}/20`;$('#score').textContent=`${state.players[0].credits} ¢ · ${state.players[0].bounties} TAGLIE`;$('#wantedCard').src=img('wanted',state.current.name);$('#wantedHealth').innerHTML=health(state.current.name,state.current.hp,state.current.maxHp);$('#hunterHud').innerHTML=state.players.map((p,i)=>`<div class="hunterBadge"><img src="${badgePath(p.name)}" alt="${p.name}"><span class="hpNumber"><b>♥</b> ${p.hp}</span></div>`).join('');const hand=$('#handCards');hand.replaceChildren();state.players[0].hand.forEach((c,i)=>{const b=document.createElement('button');b.className='handCard'+(selected===i?' selected':'');const pic=document.createElement('img');pic.src=img(c.type,c.type==='heal'?c.power:c.speed);pic.alt=c.type==='heal'?`Cura ${c.power}`:`Velocità ${c.speed} danno ${c.power}`;b.append(pic);b.onclick=()=>{if(duelSelect){duelSelect(i);return}if(locked)return;selected=i;render()};hand.append(b)});$('#playBtn').disabled=locked||selected<0||state.over||state.players[0].hp<=0;updatePiles();save()}
+function modal(title,message,button='CONTINUA'){return new Promise(resolve=>{$('#modalTitle').textContent=title;$('#modalText').textContent=message;$('#modalButton').textContent=button;$('#modal').classList.add('show');$('#modalButton').onclick=()=>{$('#modal').classList.remove('show');resolve()}})}
+function endGame(reason){state.over=true;render();const ranking=[...state.players].sort((a,b)=>b.credits-a.credits);modal('FINE PARTITA',reason+'\n'+ranking.map(p=>p.name+': '+p.credits+' crediti').join('\n'),'MENU').then(()=>showScreen('menu'));save()}
+function setSlots(entries,faceDown=true){const grid=$('#played');grid.replaceChildren();const n=state.players.length;const start=n===2?1:0;for(let i=0;i<4;i++){const box=document.createElement('div');box.className='playedCard';box.id='slot'+i;const e=entries.find(e=>e.idx===i-start);if(e){const pic=document.createElement('img');pic.src=faceDown?'./card-back.webp':img(e.card.type,e.card.type==='heal'?e.card.power:e.card.speed);pic.onerror=()=>{if(faceDown)pic.style.background='#301311'};box.append(pic)}grid.append(box)}}
+async function dealAnimation(){const el=$('#dealCard'),pic=el.querySelector('img');pic.src='./card-back.webp';el.style.display='block';for(let i=0;i<Math.min(state.players[0].hand.length,5);i++){el.style.transition='none';el.style.left='24%';el.style.top='76%';el.style.opacity='1';el.style.transform='scale(.8)';await wait(40);el.style.transition='transform .38s,opacity .38s,left .38s,top .38s';el.style.left=(25+i*12)+'%';el.style.top='90%';el.style.transform='scale(1)';el.style.opacity='0';await wait(120)}el.style.display='none'}
+async function nextWanted(){if(!state.wanted.length){endGame('I 20 ricercati sono terminati. Vince chi ha più crediti.');return}let [name,value,power]=state.wanted.pop();state.current={name,value,power,hp:state.players.length*5,maxHp:state.players.length*5};state.round++;state.players.forEach(p=>{if(p.hp>0)refill(p)});selected=-1;setSlots([]);render();status('NUOVA TAGLIA: '+name+' · '+value+' CREDITI');locked=true;await dealAnimation();locked=false;render();status('SCEGLI UNA CARTA DALLA TUA MANO')}
+async function start(n,chosen){const names=[chosen,...shuffle(hunters.filter(x=>x!==chosen)).slice(0,n-1)];state={players:names.map((name,i)=>({name,hp:5,credits:0,bounties:0,hand:[],bot:i>0})),deck:attackDeck(),discard:[],wanted:shuffle(wantedData),current:null,round:0,over:false};$('#subMenu').classList.remove('show');$('#hunterSelect').classList.remove('show');showScreen('board');await wait(750);await nextWanted()}
+function botPick(p){if(!p.hand.length)return -1;let ranked=p.hand.map((c,i)=>({c,i,score:c.type==='heal'?(p.hp<=2?10:0)+c.power:c.power+0.25*c.speed})).sort((a,b)=>b.score-a.score);return Math.random()<.2?Math.floor(Math.random()*p.hand.length):ranked[0].i}
+function duelSpeed(c){return c.type==='heal'?0:c.speed}
+function showDuelCards(results, faceUp=false){
+ const slots=$('#duelChoices');slots.replaceChildren();
+ for(const r of results){
+  const box=document.createElement('div');box.className='duelSlot';
+  const image=document.createElement('img');image.src=faceUp&&r.card?img(r.card.type,r.card.type==='heal'?r.card.power:r.card.speed):'./card-back.webp';
+  const label=document.createElement('span');label.textContent=state.players[r.e.idx].name+(faceUp?' · '+r.speed:'');
+  box.append(image,label);slots.append(box);
+ }
+}
+async function chooseDuelCard(p){
+ if(!p.hand.length)return {speed:0,empty:true,card:null};
+ if(p.bot){const k=botPick(p);const c=p.hand.splice(k,1)[0];return {speed:duelSpeed(c),empty:false,card:c}}
+ return new Promise(resolve=>{
+  $('#duelInfo').textContent='DUELLO! Scegli una carta dalla tua mano, sempre visibile in basso.';
+  duelSelect=(i)=>{
+   if(i<0||i>=p.hand.length)return;
+   const c=p.hand.splice(i,1)[0];duelSelect=null;
+   render();resolve({speed:duelSpeed(c),empty:false,card:c});
+  };
+  render();status('DUELLO! SCEGLI UNA CARTA DALLA MANO');
+ });
+}
+async function resolveDuels(entries){
+ const groups=new Map();
+ for(const e of entries){const key=e.card.type==='heal'?'heal-'+e.card.speed:'attack-'+e.card.speed;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(e)}
+ for(const [speed,group] of groups){
+  if(group.length<2)continue;
+  $('#duelOverlay').classList.add('show');$('#duelInfo').textContent='PARITÀ DI VELOCITÀ '+speed+' — DUELLO!';showDuelCards(group.map(e=>({e,card:null,speed:0})));status('DUELLO! VELOCITÀ '+speed);await wait(650);
+  // Risolve ricorsivamente solo i giocatori ancora in parità, preservando l'ordine già acquisito.
+  async function rank(tied){
+   if(tied.length<=1)return tied;
+   let results=[];
+   const allEmpty=tied.every(e=>state.players[e.idx].hand.length===0);
+   if(allEmpty){
+    // I giocatori senza carte pescano dal mazzo per rompere la parità.
+    for(const e of tied){const c=draw();if(c){discardCard(c);results.push({e,speed:duelSpeed(c),card:c})}else results.push({e,speed:0,card:null})}
+   }else{
+    for(const e of tied){const result=await chooseDuelCard(state.players[e.idx]);results.push({e,speed:result.speed,card:result.card||null})}
+   }
+   showDuelCards(results,false);$('#duelInfo').textContent='CARTE DEL DUELLO COPERTE';await wait(500);showDuelCards(results,true);$('#duelInfo').textContent='CARTE RIVELATE — '+results.map(x=>state.players[x.e.idx].name+' '+x.speed).join(' · ');for(const x of results){if(x.card)discardCard(x.card)}await wait(1100);
+   const unique=[...new Set(results.map(x=>x.speed))].sort((a,b)=>b-a);
+   if(unique.length===1 && allEmpty){return tied}
+   const ordered=[];
+   for(const v of unique){const subset=results.filter(x=>x.speed===v).map(x=>x.e);if(subset.length>1)ordered.push(...await rank(subset));else ordered.push(...subset)}
+   return ordered;
+  }
+  const ordered=await rank(group);ordered.forEach((e,i)=>e.duelRank=i);
+  $('#duelInfo').textContent='ORDINE DI SPARO: '+ordered.map(e=>state.players[e.idx].name).join(' → ');await wait(900);$('#duelOverlay').classList.remove('show');
+ }
+ return entries.sort((a,b)=>{
+  if(a.card.type==='heal'&&b.card.type!=='heal')return 1;
+  if(b.card.type==='heal'&&a.card.type!=='heal')return -1;
+  return b.card.speed-a.card.speed||(a.duelRank??0)-(b.duelRank??0)
+ });
+}
+async function shoot(slot){const el=document.createElement('div');el.className='bullet';el.style.left=(17+slot*22)+'%';el.style.top='60%';$('#effectLayer').append(el);await wait(320);el.remove();const imp=document.createElement('div');imp.className='impact';imp.textContent='✹';$('#effectLayer').append(imp);setTimeout(()=>imp.remove(),550)}
+async function play(){if(locked||selected<0)return;locked=true;const entries=[];state.players.forEach((p,idx)=>{if(p.hp<=0)return;const k=idx===0?selected:botPick(p);if(k<0)return;const card=p.hand.splice(k,1)[0];entries.push({idx,card})});selected=-1;setSlots(entries,true);render();status('CARTE GIOCATE COPERTE');await wait(850);setSlots(entries,false);document.querySelectorAll('.playedCard img').forEach(x=>x.parentElement.classList.add('reveal'));status('CARTE RIVELATE');await wait(2000);await resolveDuels(entries);let capture=null;for(const e of entries){const p=state.players[e.idx];if(p.hp<=0)continue;const start=state.players.length===2?1:0;const slot=e.idx+start;const cardEl=$('#slot'+slot);cardEl?.classList.add('fire');if(e.card.type==='heal'){p.hp=Math.min(5,p.hp+e.card.power);status(p.name+' RECUPERA '+e.card.power+' VITA')}else if(state.current.hp>0){status(p.name+' SPARA! −'+e.card.power+' VITA');await shoot(slot);state.current.hp=Math.max(0,state.current.hp-e.card.power);if(state.current.hp===0){capture=p}}render();await wait(1000);cardEl?.classList.remove('fire');if(capture)break}for(const e of entries){await animateDiscard(e.card,e.idx+(state.players.length===2?1:0))}setSlots([]);if(capture){capture.bounties++;capture.credits+=state.current.value;render();await modal('TAGLIA CATTURATA',capture.name+' cattura '+state.current.name+'!\n+'+state.current.value+' CREDITI');if(capture.bounties>=10){endGame(capture.name+' ha catturato 10 taglie.');return}await nextWanted();return}else{const attacks=entries.filter(e=>e.card.type==='attack'&&state.players[e.idx].hp>0);if(attacks.length){const target=attacks[attacks.length-1];const p=state.players[target.idx];status(state.current.name+' CONTRATTACCA '+p.name+'!');await wait(500);p.hp=Math.max(0,p.hp-state.current.power);render();await wait(650)}}const alive=state.players.filter(p=>p.hp>0);if(alive.length<=1){endGame(alive[0]?alive[0].name+' è l’ultimo cacciatore vivo.':'Nessun cacciatore sopravvissuto.');return}if(state.players[0].hp<=0){endGame('Sei stato eliminato.');return}state.players.forEach(p=>{if(p.hp>0)refill(p)});selected=-1;setSlots([]);render();await dealAnimation();locked=false;status('SCEGLI UNA CARTA DALLA TUA MANO');render()}
+$('#newBtn').onclick=()=>$('#subMenu').classList.add('show');$('#cancelMenu').onclick=()=>$('#subMenu').classList.remove('show');document.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>{chosenPlayerCount=Number(b.dataset.n);$('#subMenu').classList.remove('show');$('#hunterSelect').classList.add('show')});$('#hunterChoices').innerHTML=hunters.map(name=>`<button class="hunterChoice" data-hunter="${name}"><img src="${badgePath(name)}" alt=""><span>${name}</span></button>`).join('');document.querySelectorAll('[data-hunter]').forEach(b=>b.onclick=()=>start(chosenPlayerCount,b.dataset.hunter));$('#backToCount').onclick=()=>{$('#hunterSelect').classList.remove('show');$('#subMenu').classList.add('show')};$('#playBtn').onclick=play;$('#continueBtn').onclick=()=>{try{state=JSON.parse(localStorage.getItem('galaxy-outlaws-save-v9')||localStorage.getItem('galaxy-outlaws-save-v7'));if(!state)throw Error();locked=false;selected=-1;showScreen('board');setSlots([]);render();status('PARTITA RIPRESA')}catch(e){$('#subMenu').classList.add('show')}};$('#settingsBtn').onclick=()=>$('#settings').classList.add('show');$('#closeSettings').onclick=()=>$('#settings').classList.remove('show');$('#animToggle').onchange=e=>anim=e.target.checked;$('#backMenu').onclick=()=>modal('PAUSA','Vuoi tornare al menu? La partita viene salvata.','TORNA AL MENU').then(()=>showScreen('menu'));
+</script></body></html>

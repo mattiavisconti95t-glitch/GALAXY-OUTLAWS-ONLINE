@@ -1,0 +1,10 @@
+GALAXY OUTLAWS v2.0 - FIRESTORE (PROTOTIPO DI TEST)
+
+1. Carica tutti i file di questo ZIP nella ROOT del repository GitHub Pages di TEST, senza sovrascrivere la copia offline congelata.
+2. Firebase: progetto galaxy-outlaws-online, app Web e autenticazione ANONIMA già predisposti.
+3. Firebase Console > Firestore Database > Regole: pubblica le regole contenute in FIRESTORE_REGOLE_PROTOTIPO.txt. Le vecchie regole che consentono solo create/get NON bastano per il multiplayer.
+4. Apri il sito pubblicato, scegli ONLINE e premi CREA STANZA. Da un secondo telefono apri il link di invito e premi ENTRA NELLA STANZA.
+5. Scegliete cacciatori diversi, quindi l'host avvia la partita.
+6. Questa è una base di TEST: le mani sono visualmente separate, ma NON sono private nel database. L'host risolve le mosse; non è anti-cheat. Non usarla come multiplayer pubblico.
+7. Le illustrazioni originali delle carte azione e delle taglie NON erano presenti nello ZIP sorgente. Nella versione online sono sostituite da segnaposto grafici leggibili, per evitare immagini rotte. L'OFFLINE è rimasto identico al file sorgente.
+8. Testare su due telefoni: creazione, ingresso, selezione, gioco, duello, riconnessione. Il codice non è stato testato con un Firebase live.
